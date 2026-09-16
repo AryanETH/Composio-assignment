@@ -1,0 +1,36 @@
+{
+  "date": "2026-09-16",
+  "sampleSize": 20,
+  "method": "Deterministic stratified sample: one likely self-serve app and one likely constrained app from each of the 10 categories. Four fields were checked against first-party documentation: auth, credential access, API surface and buildability blocker.",
+  "firstPassCorrect": 16,
+  "finalConfirmed": 19,
+  "unresolved": 1,
+  "checks": [
+    {"id":2,"status":"Confirmed","note":"Private tokens and OAuth are both self-serve; broad CRM APIs."},
+    {"id":10,"status":"Corrected","note":"Changed generic API-key assumption to enterprise OAuth/client-credential access."},
+    {"id":11,"status":"Confirmed","note":"OAuth, token and password paths are documented; trial tenant works."},
+    {"id":20,"status":"Confirmed","note":"API exists, but usable credentials require a Gladly customer tenant."},
+    {"id":21,"status":"Confirmed","note":"OAuth app flow and granular scopes are self-serve."},
+    {"id":28,"status":"Confirmed","note":"API is broad; business verification and template review remain real gates."},
+    {"id":35,"status":"Confirmed","note":"OAuth and API-key flows are public and developer accessible."},
+    {"id":33,"status":"Confirmed","note":"Marketing APIs still require program approval; outreach is not optional."},
+    {"id":41,"status":"Confirmed","note":"Partner account, dev stores and GraphQL Admin API support a toolkit now."},
+    {"id":49,"status":"Confirmed","note":"LWA plus AWS signing and seller authorization make auth materially complex."},
+    {"id":55,"status":"Confirmed","note":"Self-serve token, broad Actor and dataset APIs, plus official MCP."},
+    {"id":59,"status":"Unresolved","note":"No first-party public developer documentation was found; kept low confidence."},
+    {"id":61,"status":"Confirmed","note":"REST, GraphQL and GitHub App auth are public and comprehensive."},
+    {"id":67,"status":"Confirmed","note":"SQL API and multiple auth choices are documented; trial is available."},
+    {"id":71,"status":"Confirmed","note":"Integration tokens are self-serve, but page sharing is an explicit capability gate."},
+    {"id":74,"status":"Confirmed","note":"OAuth 2.0 is public; cloud/data-center differences are the integration risk."},
+    {"id":81,"status":"Confirmed","note":"Test keys are instant; production money movement needs action safeguards."},
+    {"id":90,"status":"Confirmed","note":"API/data-feed access is sold separately and requires commercial outreach."},
+    {"id":92,"status":"Corrected","note":"Initial pass said no public developer surface; official OAuth MCP now exposes search/fetch."},
+    {"id":94,"status":"Corrected","note":"Added both OAuth MCP and self-serve x-api-key REST access; free tier is real."}
+  ],
+  "corrections": [
+    {"app":"Otter.ai","before":"No public API; outreach only","after":"Official OAuth MCP exists; plan constraints remain"},
+    {"app":"Consensus","before":"OAuth request, unclear surface","after":"Official MCP plus x-api-key REST with a free allowance"},
+    {"app":"DealCloud","before":"Generic enterprise API key","after":"Enterprise OAuth/client credentials; customer tenant required"},
+    {"app":"Waterfall.io","before":"Assumed private enrichment API","after":"Downgraded to low confidence; no public docs verified"}
+  ]
+}
