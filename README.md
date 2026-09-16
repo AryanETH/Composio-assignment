@@ -1,41 +1,53 @@
 # Agent API Index
 
-An evidence-backed case study of 100 requested app integrations: authentication, credential access, API breadth, MCP availability and agent-toolkit buildability.
+Research case study analyzing 100 apps for AI agent integration: authentication methods, credential access paths, API surface breadth, MCP availability, and buildability.
 
-## Run locally
-
-```bash
-npm run build
-python -m http.server 4173 -d dist
-```
-
-Open `http://localhost:4173`.
-
-## Run the research checks
+## How to run the research agent
 
 ```bash
 npm run research
 npm run research -- --verify
 ```
 
-The first command validates all 100 structured records and recomputes the headline counts. `--verify` additionally checks the 20-document stratified sample for source reachability. It does **not** pretend that an HTTP 200 proves a claim: semantic verification is recorded separately in `data/verification.json`.
+The first command validates all 100 structured records and recomputes the headline counts. `--verify` additionally checks the 20-document stratified sample for source reachability.
 
-## Pipeline
+## View the results locally
 
-1. **Seed** — the assignment list is normalized into one schema.
-2. **Discover** — first-party developer documentation is preferred; product pages are used only where no docs exist.
-3. **Extract** — auth, access gate, surface, MCP status, verdict, blocker and confidence are captured per app.
-4. **Lint** — required fields, unique IDs, URL syntax and aggregate counts are checked automatically.
-5. **Verify** — a deterministic two-per-category sample is read against source docs; misses are corrected and retained in the audit log.
+```bash
+npm run build
+npm run serve
+```
 
-## Human decisions
+Open `http://localhost:3000` to view the case study.
 
-The pipeline cannot reliably infer commercial access from an endpoint reference alone. A human adjudicated plan gates, app-review requirements, partner programs, destructive-action risk and ambiguous products with similar names. Low-confidence rows are intentionally visible rather than silently guessed.
+## Research pipeline
+
+1. **Seed** — Normalize the 100-app list into a strict schema
+2. **Discover** — Search first-party developer documentation (auth, API reference, MCP pages)
+3. **Extract** — Capture auth, access gate, API surface, MCP status, verdict, blocker, and confidence
+4. **Lint** — Validate required fields, unique IDs, URL syntax, and aggregate counts
+5. **Verify** — Manual review of 2 apps per category; corrections logged in the audit
+
+## What the agent does vs. what needed a human
+
+**Agent handles:**
+- Finding and parsing first-party documentation
+- Extracting auth patterns, API endpoints, and MCP server references
+- Initial verdict classification based on self-serve availability
+- Automated validation of data structure and URL reachability
+
+**Human judgment required for:**
+- Commercial access gates (partner programs, enterprise-only APIs)
+- App review requirements and approval processes
+- Destructive action risk assessment (money movement, data deletion)
+- Disambiguation of similarly-named products
+- Confidence scoring when documentation is ambiguous
 
 ## Files
 
-- `data/apps.json` — 100-row research output.
-- `data/verification.json` — sample method, hits, misses and corrections.
-- `scripts/research-agent.mjs` — schema/aggregate/evidence verification runner.
-- `site/template.html` — self-contained case-study UI.
-- `dist/index.html` — deployable single-page artifact.
+- `data/apps.json` — 100 apps with research findings
+- `data/verification.json` — Verification sample, corrections, and accuracy metrics
+- `scripts/research-agent.mjs` — Research validation and stats runner
+- `scripts/build.mjs` — Builds the final case study HTML
+- `site/template.html` — Case study UI template
+- `dist/index.html` — Final single-page artifact

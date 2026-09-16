@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "research": "node scripts/research-agent.mjs"
-  }
+    "research": "node scripts/research-agent.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "description": "Evidence-backed API, auth, MCP and buildability research across 100 requested apps"
 }
